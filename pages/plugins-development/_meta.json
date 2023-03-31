@@ -1,1 +1,8 @@
-{}
+{
+	"introduction": "Introduction",
+	"new-plugin": "Create a new plugin",
+	"dashboard-customize": "Customize dashboard",
+	"extend-bot": "Extend bot functionality",
+	"publishing": "Publishing",
+	"faqs": "FAQs"
+}

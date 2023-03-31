@@ -1,7 +1,13 @@
 {
 	"index": "Introduction",
 	"getting-started": "Getting Started",
+	"platforms": "Platforms",
 	"plugins-development": "Plugins Development",
+	"---": {
+		"type": "separator"
+	},
+	"faqs": "FAQs",
+	"tech-stack": "Tech Stack",
 	"about": {
 		"title": "About",
 		"type": "page"
