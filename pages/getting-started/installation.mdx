@@ -1,0 +1,61 @@
+import { Callout } from 'nextra-theme-docs';
+
+# Installation
+
+<Callout emoji="👾">
+  **Note:** BotMate is still in development, and
+  we are working hard to make it stable.
+</Callout>
+
+In this guide, we will learn how to setup on your local machine.
+All the data are stoed in local SQLite database. You do not need to setup any external database,
+wich makes it easier to get started.
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/en/) (v18 or higher)
+- [pnpm](https://pnpm.io/) (v6.14.1 or higher) (recommended)
+
+Note: _We recommend using [pnpm](https://pnpm.io/) as the package manager. It is faster than npm and uses less disk space._
+
+There are several ways to create a new BotMate project:
+
+## Docker (Recommended)
+
+The easiest way to get started with BotMate is to use Docker. You can use the following command to create a new BotMate project:
+
+```bash
+docker run -d -p 3000:3000 -v ./data:/data botmate/botmate:latest
+```
+
+This command download the latest BotMate image and run it on port 3000.
+A new **SQLite** database will be created in the `data` directory.
+
+## Manual Installation
+
+You can also install BotMate manually by cloning the repository:
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/botmate/botmate
+cd botmate
+pnpm install
+```
+
+### Build the Project
+
+```bash
+pnpm run db:push
+pnpm run build
+```
+
+This will clone the BotMate repository, install the dependencies, push the database schema, and build the project.
+
+### Running the Project
+
+```bash
+pnpm start
+```
+
+This will start the BotMate server on port 3000.

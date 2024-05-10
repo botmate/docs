@@ -1,12 +1,46 @@
 import * as React from 'react';
 
 const Logo = () => (
-	<svg width={24} height={24} xmlns='http://www.w3.org/2000/svg'>
-		<path
-			d='M20.43 0A3.57 3.57 0 0 1 24 3.57v1.363c0 .195-.016.386-.046.572V20.43a3.57 3.57 0 0 1-3.57 3.57h-1.38a3.57 3.57 0 0 1-3.569-3.57V8.502H3.57A3.57 3.57 0 0 1 0 4.934V3.57A3.57 3.57 0 0 1 3.57 0h16.86ZM6.23 11.52c3.44 0 6.229 2.784 6.229 6.217 0 3.434-2.789 6.217-6.229 6.217S0 21.171 0 17.737c0-3.433 2.789-6.217 6.229-6.217Z'
-			fill='currentColor'
-			fillRule='evenodd'
-		/>
+	<svg
+		width='50px'
+		height='50px'
+		viewBox='0 0 512 512'
+		version='1.1'
+		style={{
+			borderRadius: '12px',
+		}}
+	>
+		<title>logo</title>
+		<g id='logo' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+			<g id='Group'>
+				<rect
+					id='Rectangle'
+					fill='#5C6FEE'
+					x='0'
+					y='0'
+					width='512'
+					height='512'
+				></rect>
+				<rect
+					id='Rectangle'
+					fill='#FFFFFF'
+					x='129'
+					y='91'
+					width='110'
+					height='330'
+					rx='53'
+				></rect>
+				<circle
+					id='Oval'
+					stroke='#5C6FEE'
+					stroke-width='15.3865979'
+					fill='#B0BAFF'
+					cx='283.5'
+					cy='321.5'
+					r='107.193299'
+				></circle>
+			</g>
+		</g>
 	</svg>
 );
 

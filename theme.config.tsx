@@ -11,10 +11,10 @@ const config: DocsThemeConfig = {
 			<meta property='og:title' content='BotMate Docs' />
 			<meta property='og:description' content='Documentation for BotMate' />
 			<meta property='og:type' content='website' />
-			<meta property='og:url' content='https://docs.botmate.io' />
+			<meta property='og:url' content='https://docs.botmate.dev' />
 			<meta
 				property='og:image'
-				content='https://docs.botmate.io/og-image.png'
+				content='https://docs.botmate.dev/og-image.png'
 			/>
 			<link rel='icon' href='/favicon.ico' />
 		</>
