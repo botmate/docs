@@ -1,6 +1,6 @@
 import React from 'react';
 import { DocsThemeConfig } from 'nextra-theme-docs';
-import { FaTelegram } from 'react-icons/fa';
+import { FaTelegram } from 'react-icons/fa6';
 import { Logo } from './components/logo';
 
 const config: DocsThemeConfig = {
@@ -32,11 +32,6 @@ const config: DocsThemeConfig = {
         content="https://docs.botmate.dev/og-image.png"
       />
       <link rel="icon" href="/favicon.ico" />
-      <script
-        defer
-        data-domain="docs.botmate.dev"
-        src="https://analytics.monawwar.io/js/script.js"
-      ></script>
     </>
   ),
   project: {

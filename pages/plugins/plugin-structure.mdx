@@ -1,0 +1,77 @@
+# Plugin structure
+
+BotMate plugins are structured as a combination of client-side and server-side code, typically written in TypeScript and React.
+This structure allows you to build interactive UI components that interact with the BotMate dashboard and perform server-side operations.
+
+```
+my-plugin/
+├─ src/
+│  ├─ server/
+│  │  ├─ index.ts
+│  │  ├─ server.ts
+│  ├─ client/
+│  │  ├─ client.tsx
+│  │  ├─ entry.ts
+│  │  ├─ index.ts
+│  │  ├─ style.css
+├─ package.json
+├─ postcss.config.js
+├─ tailwind.config.js
+├─ tsconfig.json
+├─ tsup.config.ts
+├─ vite.config.mts
+```
+
+## Client-Side Files
+
+"**client**" folder contains the frontend logic and components of your plugin that interact with the BotMate dashboard.
+
+### client.tsx
+
+This file is the main entry point for your client-side React components. It defines how the plugin’s UI will be rendered within the dashboard, including the hooks.
+
+### entry.ts
+
+The file where you register your plugin’s client-side logic. It typically initializes the plugin in the BotMate client environment.
+
+### style.css
+
+Contains any additional custom styles for your plugin, often used alongside TailwindCSS for consistent design.
+
+## Server-Side Files
+
+"**server**" directory for the backend logic of your plugin. It handles server-side operations such as API interactions or data storage.
+
+### server.ts
+
+The main file where you define server-side behavior for your plugin. This is where you handle requests or perform operations that require server-side execution. The hooks are also defined in this file.
+
+### index.ts
+
+Acts as the entry point for server-side logic, typically responsible for initializing or configuring the server component of your plugin.
+
+## Configuration & Build Files
+
+### package.json
+
+Lists your plugin’s dependencies, scripts, and metadata. It is essential for managing your plugin’s installation and running commands like build or test.
+
+### postcss.config.js
+
+Configuration file for PostCSS, often used to process and optimize your CSS, especially if you're using tools like TailwindCSS.
+
+### tailwind.config.js
+
+Configuration file for TailwindCSS. It allows you to customize Tailwind’s default settings, such as themes, colors, and spacing used in your plugin’s UI.
+
+### tsconfig.json
+
+TypeScript configuration file that defines the TypeScript compiler options, such as paths and type checking rules.
+
+### tsup.config.ts
+
+Configuration file for tsup, which is a fast TypeScript bundler. This handles how your plugin gets bundled for both client and server environments.
+
+### vite.config.mts
+
+Configuration for Vite, a modern build tool that is used for bundling and running the development server for your plugin. This file contains the settings for how the plugin is built and served in development.

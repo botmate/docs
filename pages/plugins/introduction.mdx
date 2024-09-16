@@ -1,1 +1,41 @@
-### Coming soon!! Lots of work.
+import { Callout } from 'nextra-theme-docs';
+
+Get started with plugin development with BotMate
+
+<Callout type="info">
+  This section is about developing BotMat plugins
+  to use them as local plugins or to submit them
+  to the Marketplace. Not what you're looking for?
+  Read the plugins introduction and find your use
+  case.
+</Callout>
+
+BotMate allows the development of plugins that can extend bot functionality when enabled from the dashboard's settings, or using the CLI.
+
+## Prerequisites
+
+Before you start developing plugins for BotMate, you need to have some prerequisites:
+
+- TypeScript: Familiarity with TypeScript is essential for writing plugins that integrate smoothly with BotMate.
+- Node.js: Make sure you have Node.js installed to run your development environment and build your plugin.
+- React: Plugins often require creating user interfaces, so understanding React is crucial for building interactive components.
+- TailwindCSS: Knowledge of TailwindCSS will help you style your plugin's UI consistently with the BotMate dashboard.
+
+## Overview
+
+Plugins in BotMate are extensions that add new features or functionalities to your bots.
+You can browse and install plugins from the marketplace or create your own plugins to customize your bot's behavior.
+
+A plugin consist both the client-side and server-side logic.
+The client-side logic is responsible for rendering the plugin's UI within the BotMate dashboard,
+while the server-side logic handles backend operations like adding commands to the bot, fetching data, or interacting with external APIs.
+
+## Get started
+
+👉 To start developing a BotMate plugin:
+
+1. [​Create](create-plugin) a plugin using the CLI-based generator.
+2. Learn more about the structure of a plugin.
+3. Get an overview of the plugin APIs to add features to your plugin.
+   Plugin APIs
+   BotMate provides the following programmatic APIs for plugins to hook into some of BotMate's features:

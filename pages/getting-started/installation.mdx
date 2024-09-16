@@ -1,10 +1,12 @@
 import { Callout } from 'nextra-theme-docs';
+import Image from 'next/image';
 
 # Installation
 
 <Callout emoji="👾">
-  **Note:** BotMate is still in development, and
-  we are working hard to make it stable.
+  **Note:** BotMate is still in development,
+  expect some features to be missing or
+  incomplete.
 </Callout>
 
 In this guide, we will learn how to setup on your local machine.
@@ -20,43 +22,58 @@ Note: _We recommend using [pnpm](https://pnpm.io/) as the package manager. It is
 
 There are several ways to create a new BotMate project:
 
-## Docker (Recommended)
+## CLI
 
-The easiest way to get started with BotMate is to use Docker. You can use the following command to create a new BotMate project:
+Use the following commands to setup BotMate on your machine:
 
-```bash
-docker run -d -p 3000:3000 -v ./data:/data botmate/botmate:latest
+```sh
+pnpm create botmate
 ```
 
-This command download the latest BotMate image and run it on port 3000.
-A new **SQLite** database will be created in the `data` directory.
+This command will ask you a folder name (default "botmate") to initialize a new BotMate project. Next, select your desired messaging platform.
+The folder consist several files and folders, understanding them will help you better work with BotMate including plugin development.
 
-## Manual Installation
+<Image
+  src="/images/botmate-cli-01.png"
+  width={1920}
+  height={1080}
+/>
 
-You can also install BotMate manually by cloning the repository:
+Next, change your working directory to the project's folder and run pnpm install to install the required dependencies to start BotMate.
+After the dependencies are installed, run pnpm dev to start a development server on port 8233.
+
+<Image
+  src="/images/botmate-cli-02.png"
+  width={1920}
+  height={1080}
+/>
+
+You will be presented with a setup screen, which asks you to select a message platform. Select your bot's messaging platform and enter the require input fields and click submit.
+
+After the setup you should be presented with the dashboard interface.
+
+## Repository
+
+You can also clone the BotMate repository and setup the project manually. This method is recommended for developers who want to contribute to the project.
 
 ### Clone the Repository
 
 ```bash
 git clone https://github.com/botmate/botmate
 cd botmate
+```
+
+After cloning the repository, you can install the dependencies and run the project.
+
+### Run development server
+
+```bash
 pnpm install
+pnpm run dev
 ```
 
-### Build the Project
+This will start the BotMate development server on port 8233. Visit (http://localhost:8233) to access the dashboard.
 
-```bash
-mkdir data
-pnpm run db:push
-pnpm run build
-```
+## Docker (Coming soon)
 
-This will clone the BotMate repository, install the dependencies, push the database schema, and build the project.
-
-### Running the Project
-
-```bash
-pnpm start
-```
-
-This will start the BotMate server on port 3000.
+Docker support is coming soon. Stay tuned for updates.

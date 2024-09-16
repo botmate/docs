@@ -1,0 +1,31 @@
+import { Callout } from 'nextra-theme-docs';
+
+# Creating new plugin
+
+The first step to the development of a plugin is to create one locally on your machine, this helps in both the development and debugging. Each plugins are then publish to NPM publicly for others to install.
+
+## Creating a plugin
+
+So, let's get started by creating one using the CLI. Run the following command in your BotMate project.
+
+```sh
+pnpm bomtate pm create
+```
+
+<Callout type="info">
+  **Note:** "pm" is short for "plugin-manager"
+</Callout>
+
+The above command will go through a series of questions, like which platform you are building for, package name, description etc. Enter all the fields, and once your done, a new folder with the plugin name will be created inside the packages directory.
+
+Next, run the following command to list all the plugins available for your bots.
+
+```sh
+pnpm botmate pm list
+```
+
+## Installing plugin to a bot
+
+You should see the newly created plugin in the list. Next, let's visit the dashboard and select the bot we want the plugin to install to, make sure the you choose a bot that has the same platform as the plugin, otherwise the plugin won't appear to be installed.
+
+In the settings page of the bot, you should see the newly created plugin listed. Click on it and hit "Install". This should install the plugin for that bot, and the plugin should be loaded to the dashboard. You should see the settings provided by the bot on the dashboard.

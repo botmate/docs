@@ -1,7 +1,8 @@
 {
   "introduction": "Introduction",
   "create-plugin": "Create new plugin",
-  "publish": "Publish plugin",
-  "community-plugins": "Community Plugins",
-  "faqs": "FAQs"
+  "plugin-structure": "Plugin structure",
+  "client-api": "Client API",
+  "server-api": "Server API",
+  "publish": "Publish plugin"
 }

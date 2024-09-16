@@ -1,9 +1,5 @@
 {
   "index": "Introduction",
   "getting-started": "Getting Started",
-  "plugins": "Plugins",
-  "advanced": "Advanced",
-  "faqs": "FAQs",
-  "tech-stack": "Tech Stack",
-  "contact": "Contact Us"
+  "plugins": "Plugins"
 }

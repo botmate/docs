@@ -1,0 +1,196 @@
+import { Callout } from 'nextra-theme-docs';
+import Image from 'next/image';
+
+# Client API
+
+A BotMate plugin can interact with both the back end and the front end of the application. The Client API is about the front end part, i.e. it allows a plugin to customize the application's dashboard.
+
+A Client AP consist the following -
+
+- an entry point which is client.tsx
+- lifecycle functions
+- and several custom React hooks and variables to interact with the dashboard
+
+## Entry file
+
+The entry file for the Client API is [plugin-name]/src/client/client.tsx. This file exports a class that extends the client plugin with the following functions available:
+
+## Lifecycle functions
+
+### beforeLoad
+
+This function runs every time the plugin is about to load.
+It usually includes tasks like registering new routes or adding items to the sidebar.
+When the page loads, the `beforeLoad` function is called for each plugin.
+
+### load
+
+This function runs after all the `beforeLoad` functions have finished.
+It can include logic that depends on other plugins being enabled.
+This allows plugins to create and share plugin hooks that other plugins can use.
+
+## Available actions
+
+The Client API provides plugins with access to various small APIs for performing actions. Refer to this table for details:
+
+### Sidebar API
+
+The Sidebar API allows a plugin to add a new item to the main sidebar through the `addToSidebar()` function with the following parameters:
+
+| Parameter | Type         | Description                     |
+| --------- | ------------ | ------------------------------- |
+| `label`   | `String`     | The text to show when hovered   |
+| `path`    | `String`     | Location to open when clicked   |
+| `icon`    | `LucideIcon` | Icon to show on in sidebar      |
+| `regex?`  | `RegEx`      | Regular expression for the path |
+
+This by itself does not create a new page, but it adds a new item to the sidebar that can be clicked to open a new page.
+To create new pages, use the [Route API](#route-api).
+
+**Example:**
+
+```js {3-8}
+export class MyPlugin extends Plugin {
+  beforeLoad() {
+    this.addToSidebar({
+      label: 'Moderation',
+      icon: ShieldIcon,
+      path: '/moderation',
+      regex: /^\/moderation/,
+    });
+  }
+}
+```
+
+<details>
+  <summary>View screenshot</summary>
+  <Image
+    src="/images/sidebar-api.png"
+    width={300}
+    height={300}
+  />
+</details>
+
+### Route API
+
+This API enables you to add register routes to the application, although it is recommended to use this API once throughout your plugin.
+This allows plugins to add new pages to the dashboard. Unlike the Settings API, the Route API is more flexible and can be used to create complex pages with multiple routes.
+Here is the list of parameters:
+
+| Parameter | Type           | Description                                |
+| --------- | -------------- | ------------------------------------------ |
+| `path`    | `String`       | Path to register on the dashboard          |
+| `element` | `ReactElement` | Component to load when the path is visited |
+
+Let's say you want to create a moderation plugin with multiple pages like `Home`, `Welcome`, `Filters`, and `Anti-Spam`. You can use the Route API to achieve this.
+
+Here is an example:
+
+```js
+this.addRoute({
+  path: '/moderation/*',
+  element: (
+    <Layout>
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route
+          path="/welcome"
+          element={<WelcomePage />}
+        />
+        <Route
+          path="/filters"
+          element={<FiltersPage />}
+        />
+        <Route
+          path="/anti-spam"
+          element={<AntiSpamPage />}
+        />
+      </Routes>
+    </Layout>
+  ),
+});
+```
+
+But to open the moderation plugin, you need to add a sidebar item for it. You can do this by using the [Sidebar API](#sidebar-api).
+
+### Settings API
+
+The Settings API allows you to provide a settings page for your plugin.
+This is useful for plugins that require user configuration.
+
+```js
+import React from 'react';
+import { Plugin } from '@botmate/client';
+import SettingsPage from './settings';
+
+export class RandomNumberGenerator extends Plugin {
+  displayName = 'Random Number Generator';
+
+  async beforeLoad() {
+    this.provideSettings(<SettingsPage />);
+  }
+}
+```
+
+The `provideSettings` function takes a React component as an argument. This component will be rendered when the user clicks on the plugin settings.
+It is recommended to use settings page for plugins that require less configuration, for more complex configuration and UI, use the [Route API](#route-api).
+
+## React hooks
+
+Client API also consists several React hooks which can help you rapidy develop plugins.
+Here are the list of available hooks.
+
+### usePluginConfig
+
+This hook enables the saving and loading of plugin configurations for the bot.
+By default, it saves configurations to the currently active bot on the dashboard using key-value pairs.
+These configurations can subsequently be utilized in the Server API, allowing users to customize your plugin with a variety of options.
+
+> This hook can be used inside the plugin routes or the settings page.
+
+**Example:**
+
+```tsx
+function SettingsPage() {
+  const config = usePluginConfig();
+
+  const inputRef =
+    React.useRef < HTMLInputElement > null;
+
+  return (
+    <div className="space-y-2">
+      <Input
+        ref={inputRef}
+        defaultValue={config.get('message.start')}
+        placeholder="Enter start message"
+      />
+      <Button
+        onClick={async () => {
+          const text = inputRef.current?.value;
+          if (text) {
+            await config.save(
+              'message.start',
+              text,
+            );
+            toast.success('Message saved');
+          } else {
+            toast.error(
+              'Please enter start message',
+            );
+          }
+        }}
+      >
+        Save
+      </Button>
+    </div>
+  );
+}
+```
+
+In the code above, we are reading text from an input field and saving in the database using the `config.save` function.
+This saves the value of the input fields with the key `message.start` in the database.
+
+<Callout>
+  **Note:** Uninstalling the plugin will remove
+  all the configurations saved by the plugin.
+</Callout>
