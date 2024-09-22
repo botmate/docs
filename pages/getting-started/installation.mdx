@@ -3,12 +3,6 @@ import Image from 'next/image';
 
 # Installation
 
-<Callout emoji="👾">
-  **Note:** BotMate is still in development,
-  expect some features to be missing or
-  incomplete.
-</Callout>
-
 In this guide, we will learn how to setup on your local machine.
 All the data are stoed in local SQLite database. You do not need to setup any external database,
 wich makes it easier to get started.
@@ -16,9 +10,14 @@ wich makes it easier to get started.
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/en/) (v18 or higher)
-- [pnpm](https://pnpm.io/) (v6.14.1 or higher) (recommended)
+- [pnpm](https://pnpm.io/) (v6.14.1 or higher)
+- [mongoDB](https://www.mongodb.com/try/download/community) (database)
 
-> Note: [pnpm](https://pnpm.io/) is required to install dependencies and run the project.
+<Callout type="info">
+  If you want a free MongoDB database, you can use
+  [MongoDB
+  Atlas](https://www.mongodb.com/cloud/atlas).
+</Callout>
 
 ## CLI
 
@@ -39,14 +38,14 @@ The created folder contains several files and directories; understanding their s
 />
 
 Next, change your working directory to the project's folder and run pnpm install to install the required dependencies to start BotMate.
-After the dependencies are installed, run pnpm dev to start a development server on port 8233.
 
-<Image
-  src="/images/botmate-cli-02.png"
-  width={1920}
-  height={1080}
-/>
+Next, create a `.env` file in the root directory of the project and add the following environment variables:
 
+```env
+DATABASE_URL=mongodb://localhost:27017/botmate
+```
+
+Now the dependencies are installed, run pnpm dev to start a development server on port 8233.
 You will be presented with a setup screen, which asks you to select a message platform. Select your bot's messaging platform and enter the require input fields and click submit.
 
 After the setup you should be presented with the dashboard interface.
@@ -62,7 +61,13 @@ git clone https://github.com/botmate/botmate
 cd botmate
 ```
 
-After cloning the repository, you can install the dependencies and run the project.
+After cloning the repository, create a `.env` file in the root directory of the project and add the following environment variables:
+
+```env
+DATABASE_URL=mongodb://localhost:27017/botmate
+```
+
+Then, install the dependencies and run the development server.
 
 ### Run development server
 

@@ -1,3 +1,155 @@
 # Server API
 
-Coming soon...
+The Server API is used to define the backend logic of the plugin. It
+contains functions that interact with the database, external APIs, or
+other services. The server API is defined in the `server.ts` file of the
+plugin. Similar to the [Client API](client-api), the Server API also consists of
+lifecycle functions, custom hooks, and variables.
+
+A Server API consists of the following:
+
+- an entry point which is `server.ts`
+- lifecycle functions
+- and several methods to interact with the server
+
+## Entry file
+
+The entry file for the Server API is `[plugin-name]/src/server/server.ts`.
+
+## Lifecycle functions
+
+### beforeLoad
+
+This function runs every time the plugin is about to load. It usually
+includes tasks like setting up the database connection or initializing
+external services. It is required to register hooks in the `beforeLoad`
+function.
+
+### load
+
+This function runs after all the `beforeLoad` functions have finished. It
+can include logic that depends on other plugins being enabled. A plugin
+can invoke other plugins' hooks in the `load` function.
+
+## Available methods
+
+The Server API provides plugins with access to various methods for
+performing actions. Refer to this table for details:
+
+### registerHook
+
+The `registerHook` method is used to register a new hook that can be
+invoked by other plugins. It takes two parameters: the name of the hook
+and a callback function that will be executed when the hook is invoked.
+
+**Example:**
+
+```ts
+this.registerHook('onMessageReceived', (message) => {
+  console.log(`Received message: ${message}`);
+});
+```
+
+The above example registers a new hook called `onMessageReceived` that
+logs the received message to the console.
+
+### invokeHook
+
+The `invokeHook` method is used to invoke a hook that has been registered
+by another plugin. It takes the name of the hook and any additional
+arguments that should be passed to the hook.
+
+**Example:**
+
+```ts
+this.invokeHook('onMessageReceived', 'Hello, world!');
+```
+
+The above example invokes the `onMessageReceived` hook with the message
+`Hello, world!`.
+
+### sendClientMessage
+
+The `sendClientMessage` method is used to send a message to the client
+interface. It takes two parameters: the message to send and the type of
+message (either `'info'` or `'error'`).
+
+**Example:**
+
+```ts
+this.sendClientMessage('An error occurred', 'error');
+```
+
+The above example sends an error message to the client interface.
+
+### configManager
+
+The `configManager` method is used to interact with the plugin's
+configuration settings. It returns an object with `get` and `set`
+methods for getting and setting configuration values.
+
+**Example:**
+
+```ts
+const config = this.configManager<Config>();
+const value = await config.get('myConfigKey');
+
+await config.set('myConfigKey', 'myConfigValue');
+```
+
+The above example retrieves the value of a configuration key and sets a
+new value for the key.
+
+## Example
+
+Here is an example of an implementation of the Server API:
+
+```ts
+// server.ts
+import { repository } from '@botmate/platform-telegram';
+import { PlatformType, Plugin } from '@botmate/server';
+
+export class Analytics extends Plugin {
+  rpc = getRPC(this);
+  displayName = 'PluginA';
+  platformType = PlatformType.Telegram;
+
+  beforeLoad() {
+    // Register a your hooks
+    this.registerHook('analytics/get-user-count', (message) => {
+      return repository.getUserCount();
+    });
+  }
+}
+
+const getRPC = (plugin: Plugin) => ({
+  getTelegramChats: async (pageNo: number) => {
+    const chats = await repository.getChats(pageNo);
+    return chats.map((chat) => chat.toObject());
+  },
+});
+
+export type RPC = ReturnType<typeof getRPC>;
+```
+
+In this example, the `Analytics` plugin defines a `getRPC` function that
+returns an object with a `getTelegramChats` method. The `getTelegramChats`
+method fetches chats from the Telegram repository and returns them as an
+array of objects. The `beforeLoad` function registers a hook that can be
+invoked by other plugins to get the user count.
+
+Example of invoking the hook in another plugin:
+
+```ts
+// another-plugin/server.ts
+export class AnotherPlugin extends Plugin {
+  rpc = getRPC(this);
+  displayName = 'Another Plugin';
+  platformType = PlatformType.Telegram;
+
+  async load() {
+    const userCount = await this.invokeHook<number>('analytics/get-user-count');
+    console.log(`User count: ${userCount}`);
+  }
+}
+```

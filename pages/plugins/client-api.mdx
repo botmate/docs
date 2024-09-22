@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 A BotMate plugin can interact with both the back end and the front end of the application. The Client API is about the front end part, i.e. it allows a plugin to customize the application's dashboard.
 
-A Client AP consist the following -
+A Client API consist the following -
 
 - an entry point which is client.tsx
 - lifecycle functions
@@ -64,11 +64,7 @@ export class MyPlugin extends Plugin {
 
 <details>
   <summary>View screenshot</summary>
-  <Image
-    src="/images/sidebar-api.png"
-    width={300}
-    height={300}
-  />
+  <Image src="/images/sidebar-api.png" width={300} height={300} />
 </details>
 
 ### Route API
@@ -93,18 +89,9 @@ this.addRoute({
     <Layout>
       <Routes>
         <Route index element={<HomePage />} />
-        <Route
-          path="/welcome"
-          element={<WelcomePage />}
-        />
-        <Route
-          path="/filters"
-          element={<FiltersPage />}
-        />
-        <Route
-          path="/anti-spam"
-          element={<AntiSpamPage />}
-        />
+        <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/filters" element={<FiltersPage />} />
+        <Route path="/anti-spam" element={<AntiSpamPage />} />
       </Routes>
     </Layout>
   ),
@@ -154,8 +141,7 @@ These configurations can subsequently be utilized in the Server API, allowing us
 function SettingsPage() {
   const config = usePluginConfig();
 
-  const inputRef =
-    React.useRef < HTMLInputElement > null;
+  const inputRef = React.useRef < HTMLInputElement > null;
 
   return (
     <div className="space-y-2">
@@ -168,15 +154,10 @@ function SettingsPage() {
         onClick={async () => {
           const text = inputRef.current?.value;
           if (text) {
-            await config.save(
-              'message.start',
-              text,
-            );
+            await config.save('message.start', text);
             toast.success('Message saved');
           } else {
-            toast.error(
-              'Please enter start message',
-            );
+            toast.error('Please enter start message');
           }
         }}
       >
@@ -191,6 +172,99 @@ In the code above, we are reading text from an input field and saving in the dat
 This saves the value of the input fields with the key `message.start` in the database.
 
 <Callout>
-  **Note:** Uninstalling the plugin will remove
-  all the configurations saved by the plugin.
+  **Note:** Uninstalling the plugin will remove all the configurations saved by
+  the plugin.
 </Callout>
+
+### usePluginRPC
+
+This React hook accepts two arguments: the first is the name of the function to be called,
+and the second is the parameter to pass to that function. It is used to call RPC functions of the plugin on the server.
+The hook returns the result of the function call, while it's fetching, the result will be `undefined`.
+
+- Use this hook to call functions defined in the server API of the plugin.
+- The function name should be the same as the function name defined in the server API.
+
+**Example:**
+
+```tsx
+// page.tsx
+import type { RPC } from '../server';
+
+const telegramChats = usePluginRPC<RPC>('getTelegramChats', 1);
+
+return (
+  <div>
+    {telegramChats?.map((chat) => (
+      <div key={chat.id}>{chat.title}</div>
+    ))}
+  </div>
+);
+```
+
+In the code above, we are calling the `getTelegramChats` function defined in the server API of the plugin.
+
+```tsx
+// server.ts
+export class MyPlugin extends Plugin {
+  rpc = getRPC(this);
+  displayName = 'My Plugin';
+  ...
+}
+
+const getRPC = (plugin: Plugin) => ({
+  getTelegramChats: async () => {
+    const chats = await telegram.repository.find();
+    return chats;
+  },
+});
+
+export type RPC = ReturnType<typeof getRPC>;
+```
+
+### usePluginRPCMutation
+
+This hook is used to call RPC functions that modify the state of the plugin on the server.
+It can also be called dynamically based on user actions, such as on button clicks or form submissions.
+
+- Use this hook to call functions defined in the server API of the plugin.
+- The hook returns a promise that resolves when the function call is successful.
+- The function name should be the same as the function name defined in the server API.
+
+**Example:**
+
+```tsx
+// page.tsx
+import type { RPC } from '../server';
+
+const sendMessage = usePluginRPCMutation<RPC>('sendMessage');
+
+return (
+  <Button
+    onClick={async () => {
+      await sendMessage({ text: 'Hello, world!' });
+    }}
+  >
+    Send Message
+  </Button>
+);
+```
+
+In the code above, we are calling the `sendMessage` function defined in the server API of the plugin.
+
+```tsx
+// server.ts
+export class MyPlugin extends Plugin {
+  rpc = getRPC(this);
+  displayName = 'My Plugin';
+  ...
+}
+
+const getRPC = (plugin: Plugin) => ({
+  sendMessage: async (params: { text: string }) => {
+    await telegram.sendMessage(params.text);
+  },
+});
+
+export type RPC = ReturnType<typeof getRPC>;
+```
