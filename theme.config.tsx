@@ -5,28 +5,18 @@ import { Logo } from './components/logo';
 
 const config: DocsThemeConfig = {
   logo: <Logo />,
+  useNextSeoProps() {
+    return {
+      titleTemplate: '%s - BotMate Docs',
+    };
+  },
   head: (
     <>
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-      />
-      <meta
-        property="og:title"
-        content="BotMate Docs"
-      />
-      <meta
-        property="og:description"
-        content="Documentation for BotMate"
-      />
-      <meta
-        property="og:type"
-        content="website"
-      />
-      <meta
-        property="og:url"
-        content="https://docs.botmate.dev"
-      />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta property="og:title" content="BotMate Docs" />
+      <meta property="og:description" content="Documentation for BotMate" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://docs.botmate.dev" />
       <meta
         property="og:image"
         content="https://docs.botmate.dev/og-image.png"
@@ -39,17 +29,11 @@ const config: DocsThemeConfig = {
   },
   chat: {
     link: 'https://t.me/chatbotmate',
-    icon: (
-      <FaTelegram
-        fontSize={24}
-        fill="currentColor"
-      />
-    ),
+    icon: <FaTelegram fontSize={24} fill="currentColor" />,
   },
-  docsRepositoryBase:
-    'https://github.com/botmate/docs',
+  docsRepositoryBase: 'https://github.com/botmate/docs',
   footer: {
-    text: 'BotMate',
+    text: 'BotMate Docs',
   },
 };
 

@@ -1,26 +1,32 @@
+import { FileTree } from 'nextra/components';
+
 # Plugin structure
 
 BotMate plugins are structured as a combination of client-side and server-side code, typically written in TypeScript and React.
 This structure allows you to build interactive UI components that interact with the BotMate dashboard and perform server-side operations.
 
-```
-my-plugin/
-├─ src/
-│  ├─ server/
-│  │  ├─ index.ts
-│  │  ├─ server.ts
-│  ├─ client/
-│  │  ├─ client.tsx
-│  │  ├─ entry.ts
-│  │  ├─ index.ts
-│  │  ├─ style.css
-├─ package.json
-├─ postcss.config.js
-├─ tailwind.config.js
-├─ tsconfig.json
-├─ tsup.config.ts
-├─ vite.config.mts
-```
+<FileTree>
+  <FileTree.Folder name="my-plugin" defaultOpen>
+    <FileTree.Folder name="src" defaultOpen>
+      <FileTree.Folder name="server" defaultOpen>
+        <FileTree.File name="index.ts" />
+        <FileTree.File name="server.ts" />
+      </FileTree.Folder>
+      <FileTree.Folder name="client" defaultOpen>
+        <FileTree.File name="client.tsx" />
+        <FileTree.File name="entry.ts" />
+        <FileTree.File name="index.ts" />
+        <FileTree.File name="style.css" />
+      </FileTree.Folder>
+    </FileTree.Folder>
+    <FileTree.File name="package.json" />
+    <FileTree.File name="postcss.config.js" />
+    <FileTree.File name="tailwind.config.js" />
+    <FileTree.File name="tsconfig.json" />
+    <FileTree.File name="tsup.config.ts" />
+    <FileTree.File name="vite.config.mts" />
+  </FileTree.Folder>
+</FileTree>
 
 ## Client-Side Files
 

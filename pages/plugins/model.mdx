@@ -1,0 +1,49 @@
+# Model
+
+If you needed to create a custom database model for your plugin, you can do so by creating a mongoose schema and then using it to create a model.
+Here is an example of how you can create a model for a simple plugin:
+
+```ts filename="src/server/model.ts"
+import mongoose from 'mongoose';
+
+const schema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  age: {
+    type: Number,
+    required: true,
+  },
+});
+
+export const User = mongoose.model('User', schema);
+```
+
+In this example, we are creating a model called `User` with two fields: `name` and `age`. Both fields are required.
+
+Now, inside out plugin, we can use this model to interact with the database:
+
+```ts filename="src/server/server.ts"
+import { User } from './model';
+
+export class MyPlugin extends Plugin {
+  rpc = getRPC(this);
+  displayName = 'MyPlugin';
+  ...
+}
+
+type CreateUserInput = {
+  name: string;
+  age: number;
+};
+const getRPC = (plugin: Plugin) => ({
+  createUser: async ({ input }: CreateUserInput) => {
+    const user = new User({ name: input.name, age: input.age });
+    await user.save();
+  },
+});
+```
+
+The `createUser` method in the `getRPC` function creates a new `User` instance and saves it to the database.
+This RPC method can be called from the [client](client-api#usepluginrpcmutation) interface to create a new user in the database.

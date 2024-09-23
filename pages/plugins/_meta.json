@@ -4,5 +4,6 @@
   "plugin-structure": "Plugin structure",
   "client-api": "Client API",
   "server-api": "Server API",
+  "model": "Custom Model",
   "publish": "Publish plugin"
 }

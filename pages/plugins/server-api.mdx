@@ -1,3 +1,5 @@
+import { Callout } from 'nextra-theme-docs';
+
 # Server API
 
 The Server API is used to define the backend logic of the plugin. It
@@ -100,12 +102,20 @@ await config.set('myConfigKey', 'myConfigValue');
 The above example retrieves the value of a configuration key and sets a
 new value for the key.
 
-## Example
+## RPC
+
+The Server API can also define an RPC (Remote Procedure Call) interface that
+can be called from the client interface. The RPCs are defined in an object
+that contains methods that can be called remotely.
+
+<Callout type="info">
+  **Note:** RPC only accepts parameters in the form of a single object, i.e.
+  only first argument can be passed.
+</Callout>
 
 Here is an example of an implementation of the Server API:
 
-```ts
-// server.ts
+```ts filename="src/server/server.ts" showLineNumbers
 import { repository } from '@botmate/platform-telegram';
 import { PlatformType, Plugin } from '@botmate/server';
 
@@ -115,7 +125,7 @@ export class Analytics extends Plugin {
   platformType = PlatformType.Telegram;
 
   beforeLoad() {
-    // Register a your hooks
+    // Register a hook to get the user count
     this.registerHook('analytics/get-user-count', (message) => {
       return repository.getUserCount();
     });
@@ -140,8 +150,7 @@ invoked by other plugins to get the user count.
 
 Example of invoking the hook in another plugin:
 
-```ts
-// another-plugin/server.ts
+```ts filename="src/server/server.ts" showLineNumbers
 export class AnotherPlugin extends Plugin {
   rpc = getRPC(this);
   displayName = 'Another Plugin';
