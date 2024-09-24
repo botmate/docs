@@ -1,3 +1,6 @@
+import { Cards, Card } from 'nextra/components';
+import { FaShoppingBasket, FaTelegramPlane } from 'react-icons/fa';
+
 # Publishing
 
 Once you have developed a plugin and tested it locally, you can publish it to the NPM registry for others to install and use.
@@ -7,5 +10,73 @@ We recommend publishing your plugin to the public NPM registry to make it availa
 
 - [Node.js](https://nodejs.org/en/) (v18 or higher)
 - [pnpm](https://pnpm.io/) (v6.14.1 or higher)
+- [npm account](https://www.npmjs.com/signup)
 
-Coming soon...
+## Step 1: Prepare your plugin
+
+After you have developed and tested your plugin locally, you need to prepare it for publishing.
+
+1. **Update the version**: Update the version number in the `package.json` file.
+2. **Build the plugin**: Run the build command to generate the production build of your plugin.
+
+Make sure you have set `platformType` in `package.json` to match the platform you are building for.
+
+```json filename="package.json"
+{
+  "name": "botmate-plugin-example",
+  "version": "1.0.0",
+  "main": "lib/server/index.js",
+  "botmate": {
+    "platformType": "telegram"
+  }
+}
+```
+
+```bash
+pnpm build
+```
+
+## Step 2: Publish your plugin
+
+Once you have prepared your plugin, you can publish it to the NPM registry.
+
+1. **Login to NPM**: Run the following command to login to your NPM account.
+
+```bash
+npm login
+```
+
+2. **Publish the plugin**: Run the following command to publish your plugin to the NPM registry.
+
+```bash
+npm publish
+```
+
+## Step 3: Verify the plugin
+
+After publishing your plugin, you can verify it by installing it in a new project.
+
+1. **Create a new project**: Create a new project and install your plugin using the following command.
+
+```bash
+npm install [plugin-name]
+```
+
+2. **Verify the installation**: Verify that your plugin is installed correctly and working as expected.
+
+## Step 4: Share your plugin
+
+Once you have verified your plugin, you can share it on our [marketplace](https://market.botmate.dev).
+
+<Cards>
+  <Card
+    icon={<FaShoppingBasket />}
+    title="Marketplace"
+    href="https://market.botmate.dev"
+  />
+  <Card
+    icon={<FaTelegramPlane />}
+    title="Telegram"
+    href="https://t.me/chatbotmate"
+  />
+</Cards>
