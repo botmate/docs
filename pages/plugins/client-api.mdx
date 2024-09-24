@@ -176,7 +176,39 @@ This saves the value of the input fields with the key `message.start` in the dat
   the plugin.
 </Callout>
 
-### usePluginRPC
+### createPluginRPC
+
+This hook is used to create an RPC object that can be used to call functions defined in the server API of the plugin.
+It is used to call RPC functions of the plugin on the server with type safety.
+
+Here is an example of using query -
+
+```tsx filename="client/page.tsx"
+import { createPluginRPC } from '@botmate/client';
+import type { RPC } from '../server';
+
+const rpc = createPluginRPC<RPC>();
+
+function Page() {
+  const bot = useCurrentBot();
+  const [searchParams] = useSearchParams();
+  const page = searchParams.get('page') || '1';
+
+  const telegramChats = rpc.getTelegramChats.useQuery(parseInt(page));
+
+  return (
+    <div>
+      {telegramChats?.map((chat) => (
+        <div key={chat.id}>{chat.title}</div>
+      ))}
+    </div>
+  );
+}
+```
+
+### usePluginRPC (deprecated)
+
+> **Note:** This hook is deprecated and will be removed in future versions. Use `createPluginRPC` instead.
 
 This React hook accepts two arguments: the first is the name of the function to be called,
 and the second is the parameter to pass to that function. It is used to call RPC functions of the plugin on the server.
@@ -222,7 +254,9 @@ const getRPC = (plugin: Plugin) => ({
 export type RPC = ReturnType<typeof getRPC>;
 ```
 
-### usePluginRPCMutation
+### usePluginRPCMutation (deprecated)
+
+> **Note:** This hook is deprecated and will be removed in future versions. Use `createPluginRPC` instead.
 
 This hook is used to call RPC functions that modify the state of the plugin on the server.
 It can also be called dynamically based on user actions, such as on button clicks or form submissions.
