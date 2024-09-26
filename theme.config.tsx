@@ -31,6 +31,10 @@ const config: DocsThemeConfig = {
     link: 'https://t.me/chatbotmate',
     icon: <FaTelegram fontSize={24} fill="currentColor" />,
   },
+  banner: {
+    text: 'BotMate is a chatbot framework for developers.',
+    dismissible: true,
+  },
   docsRepositoryBase: 'https://github.com/botmate/docs',
   footer: {
     text: 'BotMate Docs',

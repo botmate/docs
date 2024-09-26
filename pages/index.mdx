@@ -1,14 +1,21 @@
-import { Callout } from 'nextra-theme-docs';
+import { Callout, Card, Cards } from 'nextra-theme-docs';
+import { FaDiscord, FaTelegram, FaGithub } from 'react-icons/fa';
+import { NextSeo } from 'next-seo';
+
+
+<NextSeo
+  title="BotMate"
+  description="BotMate is a powerful web-based platform designed to help you manage multiple bots from different platforms like Telegram and Discord — all in one place!"
+/>
 
 # Welcome to BotMate
 
 BotMate is a powerful web-based platform designed to help you manage multiple bots from different platforms like **Telegram** and **Discord** — all in one place! With **BotMate**, you can effortlessly extend your bots' functionality by installing plugins from our marketplace with just a click. Whether you're a developer or just looking for a streamlined way to manage your bots, BotMate has everything you need.
 
 <Callout type="info">
-  BotMate is open-source, making it flexible and
-  customizable. Whether you're running a single
-  bot or multiple bots across platforms, you can
-  do it all from one dashboard!
+  BotMate is open-source, making it flexible and customizable. Whether you're
+  running a single bot or multiple bots across platforms, you can do it all from
+  one dashboard!
 </Callout>
 
 ## Key Features
@@ -27,3 +34,23 @@ Check out the [Getting Started](./getting-started/installation) guide to learn m
 ---
 
 Feel free to explore the platform, try out plugins, or develop your own. BotMate is built to be flexible, extensible, and easy to use!
+
+If you need any help or have questions, don't hesitate to reach out to us on our Discord server or Telegram group.
+
+<Cards>
+  <Card
+    icon={<FaTelegram />}
+    href="https://t.me/chatbotmate"
+    title="Telegram"
+  />
+  <Card
+    icon={<FaDiscord />}
+    href="https://discord.gg/afyqDQYAbp"
+    title="Discord"
+  />
+  <Card
+    icon={<FaGithub />}
+    href="https://github.com/botmate/botmate/discussions"
+    title="Github Discussions"
+  />
+</Cards>

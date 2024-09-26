@@ -1,5 +1,11 @@
 import { Callout } from 'nextra-theme-docs';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
+
+<NextSeo
+  title="Installation"
+  description="Learn how to install BotMate on your machine."
+/>
 
 # Installation
 
@@ -40,9 +46,11 @@ The created folder contains several files and directories; understanding their s
 Next, change your working directory to the project's folder and run pnpm install to install the required dependencies to start BotMate.
 
 Next, create a `.env` file in the root directory of the project and add the following environment variables:
+You can use `openssl rand -hex 16` to generate a secret.
 
 ```env
 DATABASE_URL=mongodb://localhost:27017/botmate
+SECRET=
 ```
 
 Now the dependencies are installed, run pnpm dev to start a development server on port 8233.
@@ -62,9 +70,11 @@ cd botmate
 ```
 
 After cloning the repository, create a `.env` file in the root directory of the project and add the following environment variables:
+You can use `openssl rand -hex 16` to generate a secret.
 
 ```env
 DATABASE_URL=mongodb://localhost:27017/botmate
+SECRET=
 ```
 
 Then, install the dependencies and run the development server.

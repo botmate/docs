@@ -1,0 +1,34 @@
+import { Callout, Card, Cards } from 'nextra-theme-docs';
+import { FaDiscord, FaTelegram, FaGithub } from 'react-icons/fa';
+
+import { NextSeo } from 'next-seo';
+
+
+<NextSeo
+  title="Help"
+  description="Need help with BotMate? Reach out to us on our Discord server or Telegram group!"
+/>
+
+
+
+# Help
+
+If you need any help or have questions, don't hesitate to reach out to us on our Discord server or Telegram group.
+
+<Cards>
+  <Card
+    icon={<FaTelegram />}
+    href="https://t.me/chatbotmate"
+    title="Telegram"
+  />
+  <Card
+    icon={<FaDiscord />}
+    href="https://discord.gg/afyqDQYAbp"
+    title="Discord"
+  />
+  <Card
+    icon={<FaGithub />}
+    href="https://github.com/botmate/botmate/discussions"
+    title="Github Discussions"
+  />
+</Cards>
