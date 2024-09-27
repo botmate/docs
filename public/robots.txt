@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://docs.botmate.dev
+
+# Sitemaps
+Sitemap: https://docs.botmate.dev/sitemap.xml

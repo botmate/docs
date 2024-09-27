@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://docs.botmate.dev</loc><lastmod>2024-09-27T08:45:43.060Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://docs.botmate.dev/getting-started/adding-bot</loc><lastmod>2024-09-27T08:45:43.060Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://docs.botmate.dev/getting-started/faqs</loc><lastmod>2024-09-27T08:45:43.060Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://docs.botmate.dev/getting-started/installation</loc><lastmod>2024-09-27T08:45:43.060Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://docs.botmate.dev/help</loc><lastmod>2024-09-27T08:45:43.060Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://docs.botmate.dev/plugins/client-api</loc><lastmod>2024-09-27T08:45:43.060Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://docs.botmate.dev/plugins/create-plugin</loc><lastmod>2024-09-27T08:45:43.060Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://docs.botmate.dev/plugins/introduction</loc><lastmod>2024-09-27T08:45:43.060Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://docs.botmate.dev/plugins/model</loc><lastmod>2024-09-27T08:45:43.060Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://docs.botmate.dev/plugins/plugin-structure</loc><lastmod>2024-09-27T08:45:43.060Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://docs.botmate.dev/plugins/publish</loc><lastmod>2024-09-27T08:45:43.060Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://docs.botmate.dev/plugins/server-api</loc><lastmod>2024-09-27T08:45:43.060Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://docs.botmate.dev/workflows</loc><lastmod>2024-09-27T08:45:43.060Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+</urlset>
